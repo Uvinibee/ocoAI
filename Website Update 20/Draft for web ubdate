@@ -123,15 +123,15 @@
                 </div>
                 
                 <h1 class="text-5xl md:text-7xl font-poppins font-black mb-6 leading-tight">
-                    Modern firms run on AI.
+                    Smart financial firms run on Oco AI.
                     <br>
-                    <span class="bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 bg-clip-text text-transparent">Yours can too.</span>
+                    <span class="bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 bg-clip-text text-transparent">Make every client worth twice as much.</span>
                 </h1>
                 
                 <p class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto mb-10 leading-relaxed">
-                    Build with Oco AI. Your firms own secure, internal AI that transforms your data into 
-                    <span class="font-semibold text-purple-600">smarter insights</span> for your advisers,
-                    <span class="font-semibold text-blue-600">without ever leaving your control.</span>.
+                    Oco AI connects your insurance, lending, and legal practices to spot cross-practice opportunities and predict client needs before they ask. All your data stays 
+                    <span class="font-semibold text-purple-600">secure</span> and under, 
+                    <span class="font-semibold text-blue-600">your control.</span>.
                 </p>
                 
                 <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
