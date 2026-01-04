@@ -1,348 +1,137 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ocoAI - Private AI for Law Firms</title>
+    <title>ocoAI - Status</title>
     
-    <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Inter + Poppins for variety -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --bg-color: #050505;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --border-color: #333333;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
         }
-        .font-poppins {
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        /* Custom animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
         }
         
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
-            50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.8); }
+        /* Subtle Grain texture */
+        .bg-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
-        
-        .float-animation {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .pulse-glow {
-            animation: pulse-glow 3s ease-in-out infinite;
-        }
-        
-        /* Gradient backgrounds */
-        .bg-gradient-vibrant {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .bg-gradient-electric {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-        
-        .bg-gradient-ocean {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-        
-        .bg-gradient-sunset {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-        }
-        
-        /* Glass morphism */
-        .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        /* Hover effects */
-        .hover-lift {
-            transition: all 0.3s ease;
-        }
-        
-        .hover-lift:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+
+        /* Custom selection color */
+        ::selection {
+            background: #ffffff;
+            color: #000000;
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-blue-50 via-white to-purple-50 text-gray-800">
+<body class="h-screen w-full overflow-hidden flex flex-col items-center justify-center relative">
 
-    <!-- Header & Navigation -->
-    <header class="fixed top-0 left-0 right-0 glass z-50 border-b border-white/20">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="flex items-center">
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-3 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
-                    <img src="./image.png" alt="ocoAI Logo" class="h-12 w-auto">
-                </div>
-            </a>
-            <nav class="hidden md:flex space-x-8">
-                <a href="#solutions" class="text-gray-700 hover:text-purple-600 transition-colors duration-300 font-medium">Solutions</a>
-                <a href="#about" class="text-gray-700 hover:text-purple-600 transition-colors duration-300 font-medium">About Us</a>
-                <a href="#contact" class="text-gray-700 hover:text-purple-600 transition-colors duration-300 font-medium">Contact</a>
-            </nav>
-            <div class="md:hidden">
-                <button id="menu-btn" class="text-purple-600 focus:outline-none">
-                    <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-                    <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
-                </button>
+    <div class="bg-grain"></div>
+
+    <div class="relative z-10 max-w-4xl w-full px-6 flex flex-col items-center text-center">
+        
+        <h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-white leading-tight">
+            This founder is <br />
+            cooking something new.
+        </h1>
+        
+        <p class="text-lg md:text-xl text-neutral-500 mb-12 max-w-xl font-mono">
+            Building something new <br>
+            <span class="text-white">What is life without constant change?</span>
+        </p>
+
+        <div id="countdown" class="grid grid-cols-4 gap-4 md:gap-8 mb-12 w-full max-w-lg">
+            <div class="flex flex-col items-center p-4 border border-white/10 rounded-lg">
+                <span id="days" class="text-3xl md:text-4xl font-mono font-bold">00</span>
+                <span class="text-[10px] uppercase tracking-widest text-neutral-500 mt-2">Days</span>
+            </div>
+            <div class="flex flex-col items-center p-4 border border-white/10 rounded-lg">
+                <span id="hours" class="text-3xl md:text-4xl font-mono font-bold">00</span>
+                <span class="text-[10px] uppercase tracking-widest text-neutral-500 mt-2">Hours</span>
+            </div>
+            <div class="flex flex-col items-center p-4 border border-white/10 rounded-lg">
+                <span id="minutes" class="text-3xl md:text-4xl font-mono font-bold">00</span>
+                <span class="text-[10px] uppercase tracking-widest text-neutral-500 mt-2">Mins</span>
+            </div>
+            <div class="flex flex-col items-center p-4 border border-white/10 rounded-lg">
+                <span id="seconds" class="text-3xl md:text-4xl font-mono font-bold">00</span>
+                <span class="text-[10px] uppercase tracking-widest text-neutral-500 mt-2">Secs</span>
             </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden glass">
-            <nav class="flex flex-col items-center px-6 pb-4 space-y-4">
-                <a href="#solutions" class="text-gray-700 hover:text-purple-600 transition-colors duration-300 font-medium">Solutions</a>
-                <a href="#about" class="text-gray-700 hover:text-purple-600 transition-colors duration-300 font-medium">About Us</a>
-                <a href="#contact" class="text-gray-700 hover:text-purple-600 transition-colors duration-300 font-medium">Contact</a>
-            </nav>
-        </div>
-    </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="pt-32 pb-20 text-center relative overflow-hidden">
-            <!-- Animated background elements -->
-            <div class="absolute inset-0 overflow-hidden">
-                <div class="absolute top-20 left-10 w-72 h-72 bg-gradient-electric rounded-full mix-blend-multiply filter blur-xl opacity-20 float-animation"></div>
-                <div class="absolute top-40 right-10 w-72 h-72 bg-gradient-ocean rounded-full mix-blend-multiply filter blur-xl opacity-20 float-animation" style="animation-delay: 2s;"></div>
-                <div class="absolute bottom-20 left-1/2 w-72 h-72 bg-gradient-sunset rounded-full mix-blend-multiply filter blur-xl opacity-20 float-animation" style="animation-delay: 4s;"></div>
+        <div class="w-full max-w-md">
+            <div class="flex flex-col items-center space-y-2 mb-2">
+                 <span class="text-xs font-mono text-neutral-600 uppercase tracking-widest">Target Launch: Jan 7, 2026</span>
             </div>
             
-            <div class="container mx-auto px-6 relative z-10">
-                <div class="inline-block px-4 py-2 bg-gradient-to-r from-purple-100 to-blue-100 rounded-full text-purple-700 font-medium mb-6 border border-purple-200">
-                    🚀 Your Firm's Data, Fully Empowered.
-                </div>
-                
-                <h1 class="text-5xl md:text-7xl font-poppins font-black mb-6 leading-tight">
-                    Smart financial firms run on Oco AI.
-                    <br>
-                    <span class="bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 bg-clip-text text-transparent">Make every client worth twice as much.</span>
-                </h1>
-                
-                <p class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto mb-10 leading-relaxed">
-                    Oco AI connects your insurance, lending, and legal practices to spot cross-practice opportunities and predict client needs before they ask. All your data stays 
-                    <span class="font-semibold text-purple-600">secure</span> and under, 
-                    <span class="font-semibold text-blue-600">your control.</span>.
-                </p>
-                
-                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
-                    <a href="#contact" class="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-bold py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
-                        Schedule a Consultation
-                    </a>
-                    <a href="#solutions" class="border-2 border-purple-500 text-purple-500 hover:bg-purple-500 hover:text-white font-bold py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105">
-                        Explore Solutions
-                    </a>
-                </div>
-                
-                <!-- Key Differentiator Highlight -->
-                <div class="max-w-4xl mx-auto">
-                    <div class="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 p-1 rounded-3xl shadow-2xl">
-                        <div class="bg-white rounded-3xl p-8 text-center">
-                            <div class="flex items-center justify-center space-x-3 mb-4">
-                                <div class="flex items-center space-x-1">
-                                    <span class="text-2xl">🧠</span>
-                                    <span class="font-bold text-gray-800 text-lg">GPT-Level Intelligence</span>
-                                </div>
-                                <span class="text-2xl text-gray-400">+</span>
-                                <div class="flex items-center space-x-1">
-                                    <span class="text-2xl">🔒</span>
-                                    <span class="font-bold text-gray-800 text-lg">Private Infrastructure</span>
-                                </div>
-                            </div>
-                            <p class="text-gray-600 text-lg font-medium">
-                                Get the power of ChatGPT-4 level AI, but running exclusively on 
-                                <span class="font-bold text-purple-600">your firm's private servers</span>. 
-                                Zero data sharing. Maximum performance.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Solutions Section -->
-        <section id="solutions" class="py-24 bg-gradient-to-b from-white to-purple-50">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-20">
-                    <div class="inline-block px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full text-blue-700 font-medium mb-4">
-                        💡 Our Solutions
-                    </div>
-                    <h2 class="text-4xl md:text-5xl font-poppins font-bold mb-6">AI Solutions Built on <span class="text-purple-600">Trust</span></h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">We provide intelligent tools designed for the high-stakes environment of legal practice.</p>
-                </div>
-                
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Solution 1: Boost Cross-Selling -->
-                    <div class="bg-white p-8 rounded-3xl shadow-xl hover-lift border border-purple-100 relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-electric rounded-full transform translate-x-16 -translate-y-16 opacity-10"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center justify-center h-20 w-20 rounded-2xl bg-gradient-to-r from-purple-500 to-blue-500 mb-6">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="M9 12l2 2 4-4"/><path d="M12 2a10 10 0 0 0-10 10c0 4.42 2.87 8.17 6.84 9.5.6.11.82-.26.82-.57 0-.28-.01-1.02-.01-2-2.5.55-3.03-1.21-3.03-1.21-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23.95-.26 1.98-.4 3-.4s2.05.13 3 .4c2.28-1.55 3.28-1.23 3.28-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.02 2.89-.02 3.28 0 .31.22.69.83.57A10 10 0 0 0 22 12a10 10 0 0 0-10-10z"/></svg>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-4 text-gray-800">Cross-Practice Opportunity Recognition</h3>
-                            <p class="text-gray-600 leading-relaxed">AI finds revenue opportunities across your firm's insurance, lending, and legal practices that individual departments miss.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Solution 2: Security -->
-                    <div class="bg-white p-8 rounded-3xl shadow-xl hover-lift border border-blue-100 relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-ocean rounded-full transform translate-x-16 -translate-y-16 opacity-10"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center justify-center h-20 w-20 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 mb-6">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-4 text-gray-800">Predictive Client Management</h3>
-                            <p class="text-gray-600 leading-relaxed">AI learns from client history to predict major life changes, so you can reach out before clients need to ask.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Solution 3: Automation -->
-                    <div class="bg-white p-8 rounded-3xl shadow-xl hover-lift border border-green-100 relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-sunset rounded-full transform translate-x-16 -translate-y-16 opacity-10"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center justify-center h-20 w-20 rounded-2xl bg-gradient-to-r from-green-500 to-teal-500 mb-6">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-4 text-gray-800">Smart Document Processing</h3>
-                            <p class="text-gray-600 leading-relaxed">AI reads documents from all your departments and connects the information to build more complete client profiles.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Us Section -->
-        <section id="about" class="py-24 bg-gradient-to-r from-purple-600 to-blue-600 text-white relative overflow-hidden">
-            <div class="absolute inset-0 bg-black opacity-20"></div>
-            <div class="container mx-auto px-6 relative z-10">
-                <div class="flex flex-col md:flex-row items-center gap-16">
-                    <div class="md:w-1/2 flex justify-center">
-                        <div class="relative">
-                            <div class="absolute inset-0 bg-white opacity-20 rounded-3xl transform rotate-6 scale-105"></div>
-                            <div class="relative z-10 bg-white bg-opacity-10 p-12 rounded-3xl backdrop-blur-sm border border-white border-opacity-20">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white mx-auto"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></svg>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="md:w-1/2">
-                        <div class="inline-block px-4 py-2 bg-white bg-opacity-20 rounded-full text-white font-medium mb-6">
-                            🎯 Our Mission
-                        </div>
-                        <h2 class="text-4xl md:text-5xl font-poppins font-bold mb-6 leading-tight">Your AI Layer for<span class="text-yellow-300">Complete Client Insights</span></h2>
-                        <p class="text-xl text-white text-opacity-90 mb-6 leading-relaxed">We help small to medium financial services firms maximise every client relationship by connecting the dots between their different practices.</p>
-                        <p class="text-lg text-white text-opacity-80 leading-relaxed">Oco AI was born from a simple observation: multi-practice financial firms were missing opportunities because their departments weren't talking to each other. Advisers were encouraged to cross-sell and maximise client value, but the tools and systems made it nearly impossible to see the full picture.</p>
-                        <div class="mt-8">
-                            <a href="#contact" class="inline-block bg-white text-purple-600 font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105">
-                                Learn More About Us
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-24 bg-gradient-to-b from-gray-50 to-white">
-            <div class="container mx-auto px-6 max-w-4xl">
-                <div class="text-center mb-16">
-                    <div class="inline-block px-4 py-2 bg-gradient-to-r from-purple-100 to-blue-100 rounded-full text-purple-700 font-medium mb-4">
-                        📞 Get In Touch
-                    </div>
-                    <h2 class="text-4xl md:text-5xl font-poppins font-bold mb-6">Transform Your <span class="text-purple-600">Practice</span></h2>
-                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">Ready to see how ocoAI can revolutionize your firm's efficiency and security? Reach out to schedule a private consultation and demo.</p>
-                </div>
-                
-                <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-purple-100">
-                    <form action="https://formspree.io/f/xblyegqy" method="POST" class="space-y-6">
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-gray-700 font-semibold mb-2" for="full-name">Full Name</label>
-                                <input name="name" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-purple-500 focus:bg-white focus:outline-none transition-all duration-300" id="full-name" type="text" placeholder="Jane Doe" required>
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 font-semibold mb-2" for="law-firm">Law Firm</label>
-                                <input name="firm" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-purple-500 focus:bg-white focus:outline-none transition-all duration-300" id="law-firm" type="text" placeholder="Doe & Associates" required>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-gray-700 font-semibold mb-2" for="email">Email Address</label>
-                            <input name="email" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-purple-500 focus:bg-white focus:outline-none transition-all duration-300" id="email" type="email" placeholder="email@lawfirm.com" required>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-gray-700 font-semibold mb-2" for="message">Message</label>
-                            <textarea name="message" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-purple-500 focus:bg-white focus:outline-none transition-all duration-300 h-32 resize-none" id="message" placeholder="I'm interested in learning more about ocoAI's private infrastructure..." required></textarea>
-                        </div>
-                        
-                        <div class="text-center">
-                            <button type="submit" class="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-bold py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
-                                Send Inquiry
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white">
-        <div class="container mx-auto px-6 py-12">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="text-center md:text-left mb-8 md:mb-0">
-                    <div class="flex items-center justify-center md:justify-start mb-4">
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-2 border border-white/20">
-                            <img src="./ocoAI-Logo.png" alt="ocoAI Logo" class="h-8 w-auto">
-                        </div>
-                    </div>
-                    <p class="text-gray-400 text-lg">Secure AI for Legal Excellence</p>
-                </div>
-                <div class="text-center">
-                    <p class="text-gray-400 mb-4">&copy; 2025 ocoAI. All rights reserved.</p>
-                    <div class="flex justify-center space-x-6">
-                        <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Privacy Policy</a>
-                        <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Terms of Service</a>
-                    </div>
-                </div>
-            </div>
+            <form action="https://formspree.io/f/xblyegqy" method="POST" class="relative group">
+                <input 
+                    type="email" 
+                    name="email" 
+                    placeholder="Enter your email" 
+                    required
+                    class="w-full bg-neutral-900 border border-neutral-800 text-white px-5 py-4 rounded-lg focus:outline-none focus:border-neutral-500 transition-colors font-mono placeholder-neutral-700"
+                >
+                <button 
+                    type="submit" 
+                    class="absolute right-2 top-2 bottom-2 bg-white text-black font-bold px-6 rounded-md hover:bg-neutral-200 transition-colors text-sm font-mono"
+                >
+                    Notify Me
+                </button>
+            </form>
         </div>
-    </footer>
+    </div>
 
-    <!-- JavaScript for Mobile Menu -->
+    <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-white opacity-[0.03] blur-[100px] pointer-events-none"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-white opacity-[0.03] blur-[100px] pointer-events-none"></div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuBtn = document.getElementById('menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuIcon = document.getElementById('menu-icon');
-            const closeIcon = document.getElementById('close-icon');
+        const countDownDate = new Date("Jan 7, 2026 09:00:00").getTime();
 
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                menuIcon.classList.toggle('hidden');
-                closeIcon.classList.toggle('hidden');
-            });
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
 
-            // Close mobile menu when a link is clicked
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    menuIcon.classList.remove('hidden');
-                    closeIcon.classList.add('hidden');
-                });
-            });
-        });
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "<div class='text-xl font-mono text-white'>SYSTEM ONLINE. REFRESH.</div>";
+            }
+        }, 1000);
     </script>
-
 </body>
 </html>
