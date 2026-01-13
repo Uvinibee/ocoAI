@@ -56,59 +56,39 @@
     <div class="relative z-10 max-w-4xl w-full px-6 flex flex-col items-center text-center">
         
         <h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-white leading-tight">
-            This founder is <br />
-            cooking something new
+            Building Scalable <br />
+            AI Tools
         </h1>
         
-        <p class="text-lg md:text-xl text-neutral-500 mb-12 max-w-xl font-mono">
-            Building something new <br>
-            <span class="text-white">What is life without constant change?</span>
-        </p>
-
-        <div id="countdown" class="grid grid-cols-4 gap-4 md:gap-8 mb-12 w-full max-w-lg">
-            <div class="flex flex-col items-center p-4 border border-white/10 rounded-lg">
-                <span id="days" class="text-3xl md:text-4xl font-mono font-bold">00</span>
-                <span class="text-[10px] uppercase tracking-widest text-neutral-500 mt-2">Days</span>
-            </div>
-            <div class="flex flex-col items-center p-4 border border-white/10 rounded-lg">
-                <span id="hours" class="text-3xl md:text-4xl font-mono font-bold">00</span>
-                <span class="text-[10px] uppercase tracking-widest text-neutral-500 mt-2">Hours</span>
-            </div>
-            <div class="flex flex-col items-center p-4 border border-white/10 rounded-lg">
-                <span id="minutes" class="text-3xl md:text-4xl font-mono font-bold">00</span>
-                <span class="text-[10px] uppercase tracking-widest text-neutral-500 mt-2">Mins</span>
-            </div>
-            <div class="flex flex-col items-center p-4 border border-white/10 rounded-lg">
-                <span id="seconds" class="text-3xl md:text-4xl font-mono font-bold">00</span>
-                <span class="text-[10px] uppercase tracking-widest text-neutral-500 mt-2">Secs</span>
-            </div>
-        </div>
-
-        <div class="w-full max-w-md">
-            <div class="flex flex-col items-center space-y-2 mb-2">
-                 <span class="text-xs font-mono text-neutral-600 uppercase tracking-widest">Target Launch: Jan 13, 2026 (got extented by a week)</span>
+        <div class="mb-12 space-y-8 max-w-xl">
+            <div>
+                <h2 class="text-sm font-mono text-neutral-400 mb-2">Current Available Product</h2>
+                <div class="flex items-start gap-4 text-left">
+                    <a href="https://www.docuhandler.com/" target="_blank" class="text-white hover:text-neutral-300 transition-colors font-mono text-sm underline">
+                        https://www.docuhandler.com/
+                    </a>
+                    <p class="text-neutral-400 text-sm">
+                        Platform that turns dense, boring documents into interactive private chat links. With real-time live analytics for the sender.
+                    </p>
+                </div>
             </div>
             
-            <form action="https://formspree.io/f/xblyegqy" method="POST" class="relative group">
-                <input 
-                    type="email" 
-                    name="email" 
-                    placeholder="Enter your email" 
-                    required
-                    class="w-full bg-neutral-900 border border-neutral-800 text-white px-5 py-4 rounded-lg focus:outline-none focus:border-neutral-500 transition-colors font-mono placeholder-neutral-700"
-                >
-                <button 
-                    type="submit" 
-                    class="absolute right-2 top-2 bottom-2 bg-white text-black font-bold px-6 rounded-md hover:bg-neutral-200 transition-colors text-sm font-mono"
-                >
-                    Notify Me
-                </button>
-            </form>
+            <div>
+                <h2 class="text-sm font-mono text-neutral-400 mb-2">Current Team</h2>
+                <p class="text-white font-mono text-sm">Uvini Bamunuarachchige</p>
+            </div>
+            
+            <div>
+                <h2 class="text-sm font-mono text-neutral-400 mb-2">Interested in Joining: Email</h2>
+                <a href="mailto:uvini@ocoai.info" class="text-white hover:text-neutral-300 transition-colors font-mono text-sm underline">
+                    uvini@ocoai.info
+                </a>
+            </div>
         </div>
     </div>
 
-    <div class="absolute bottom-6 w-full text-center z-20 px-4">
-        <p class="text-[10px] md:text-xs font-mono text-neutral-700 uppercase tracking-widest">
+    <div class="absolute bottom-6 w-full text-center z-20 px-6">
+        <p class="text-[20px] md:text-xs font-mono text-neutral-700 uppercase tracking-widest">
             &copy; 2026 ocoAI PTY LTD &nbsp;&bull;&nbsp; ABN 692 614 761 &nbsp;&bull;&nbsp; ACN 356 926 14761
         </p>
     </div>
@@ -116,28 +96,5 @@
     <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-white opacity-[0.03] blur-[100px] pointer-events-none"></div>
     <div class="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-white opacity-[0.03] blur-[100px] pointer-events-none"></div>
 
-    <script>
-        const countDownDate = new Date("Jan 13, 2026 23:00:00").getTime();
-
-        const x = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = countDownDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("countdown").innerHTML = "<div class='text-xl font-mono text-white'>SYSTEM ONLINE. REFRESH.</div>";
-            }
-        }, 1000);
-    </script>
 </body>
 </html>
